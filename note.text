@@ -1,0 +1,17 @@
+1
+# Definir la route
+-> Config
+-> /config/routes.yaml (l'indentation se fait avec 4 espaces par niveau -> .yaml)
+
+2
+# création du controller
+
+-> /App/Controller (AdvertController.php)
+
+3
+Création de twig => composer require twig
+-> /templates/Advert/index.html.twig (Advert comme le controller afin de nous y retrouver)
+
+Installation de debug => composer require debug
+
+Suppression du cachee => php bin/console cache:clear
