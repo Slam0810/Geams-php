@@ -25,10 +25,30 @@ class AdvertController extends AbstractController
             throw $this->createNotFoundException('Page "'.$page.'" inexistante.');
         }
 
-        // Ici, on récupérera la liste des annonces, puis on la passera au template
+        // Notre liste d'annonce en dur
+        $listAdverts = array(
+            array(
+                'title'   => 'Recherche développpeur Symfony',
+                'id'      => 1,
+                'author'  => 'Alexandre',
+                'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
+                'date'    => new \Datetime()),
+            array(
+                'title'   => 'Mission de webmaster',
+                'id'      => 2,
+                'author'  => 'Hugo',
+                'content' => 'Nous recherchons un webmaster capable de maintenir notre site internet. Blabla…',
+                'date'    => new \Datetime()),
+            array(
+                'title'   => 'Offre de stage webdesigner',
+                'id'      => 3,
+                'author'  => 'Mathieu',
+                'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
+                'date'    => new \Datetime())
+        );
 
         // Mais pour l'instant, on ne fait qu'appeler le template
-        return $this->render('Advert/index.html.twig');
+        return $this->render('Advert/index.html.twig', array('listAdvert' => $listAdverts));
     }
 
     /**
@@ -36,11 +56,17 @@ class AdvertController extends AbstractController
      */
     public function view($id)
     {
-        // Ici, on récupérera l'annonce correspondante à l'id $id
+        $advert = array(
+            'title'   => 'Recherche développpeur Symfony',
+            'id'      => $id,
+            'author'  => 'Alexandre',
+            'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
+            'date'    => new \Datetime()
+        );
 
-        return $this->render('Advert/view.html.twig', [
-            'id' => $id,
-        ]);
+        return $this->render('Advert/view.html.twig', array(
+            'advert' => $advert
+        ));
     }
 
     /**
@@ -52,12 +78,10 @@ class AdvertController extends AbstractController
 
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST')) {
-            // Ici, on s'occupera de la création et de la gestion du formulaire
-
-            $this->addFlash('notice', 'Annonce bien enregistrée.');
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
             // Puis on redirige vers la page de visualisation de cettte annonce
-            return $this->redirectToRoute('oc_advert_view', ['id' => 5]);
+            return $this->redirectToRoute('oc_advert_view', array('id' => 5));
         }
 
         // Si on n'est pas en POST, alors on affiche le formulaire
@@ -73,12 +97,20 @@ class AdvertController extends AbstractController
 
         // Même mécanisme que pour l'ajout
         if ($request->isMethod('POST')) {
-            $this->addFlash('notice', 'Annonce bien modifiée.');
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien modifiée.');
 
-            return $this->redirectToRoute('oc_advert_view', ['id' => 5]);
+            return $this->redirectToRoute('oc_advert_view', array('id' => 5));
         }
+        $advert = array(
+            'title'   => 'Recherche développpeur Symfony',
+            'id'      => $id,
+            'author'  => 'Alexandre',
+            'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
+            'date'    => new \Datetime()
+        );
 
-        return $this->render('Advert/edit.html.twig');
+        return $this->render('Advert/edit.html.twig', array(
+            'advert' => $advert));
     }
 
     /**
