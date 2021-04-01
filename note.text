@@ -15,3 +15,5 @@ Création de twig => composer require twig
 Installation de debug => composer require debug
 
 Suppression du cachee => php bin/console cache:clear
+
+Installation de la recette annotation -> composer require annotations
