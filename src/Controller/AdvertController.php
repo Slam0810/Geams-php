@@ -92,4 +92,17 @@ class AdvertController extends AbstractController
 
         return $this->render('Advert/delete.html.twig');
     }
+
+    public function menuAction()
+    {
+        $listAdverts = array(
+            array('id' => 2, 'title' => 'Recherche développeur Symfony'),
+            array('id' => 5, 'title' => 'Mission Designer'),
+            array('id' => 9, 'title' => 'Stage en webdesigner')
+        );
+        return $this->render('Advert:menu.html.twig', array(
+            'listAdverts' => $listAdverts
+        ));
+    }
+
 }
