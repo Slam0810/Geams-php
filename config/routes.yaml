@@ -12,3 +12,15 @@ oc_advert_view:
 oc_advert_add:
     path:   /advert/add
     controller: App\Controller\AdvertController::add
+
+oc_advert_menu:
+    path:   /advert/menu
+    controller: App\Controller\AdvertController::menuAction
+
+oc_advert_edit:
+    path:   /advert/edit
+    controller: App\Controller\AdvertController::edit
+
+oc_advert_delete:
+    path:   /advert/delete
+    controller: App\Controller\AdvertController::delete

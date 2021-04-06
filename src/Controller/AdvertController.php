@@ -48,7 +48,7 @@ class AdvertController extends AbstractController
         );
 
         // Mais pour l'instant, on ne fait qu'appeler le template
-        return $this->render('Advert/index.html.twig', array('listAdvert' => $listAdverts));
+        return $this->render('Advert/index.html.twig', array('advert' => $listAdverts));
     }
 
     /**
@@ -132,7 +132,7 @@ class AdvertController extends AbstractController
             array('id' => 5, 'title' => 'Mission Designer'),
             array('id' => 9, 'title' => 'Stage en webdesigner')
         );
-        return $this->render('Advert:menu.html.twig', array(
+        return $this->render('Advert/menu.html.twig', array(
             'listAdverts' => $listAdverts
         ));
     }
